@@ -1,13 +1,19 @@
-body {
-    /*padding-top: 20px;*/
+body{
+    padding-top: 20px;
     padding-bottom: 20px;
 }
-.box {
-    width: 100%;
-}
-.w-100{
-    height: 600px;
-}
-.navbar {
+.navbar{
     margin-bottom: 20px;
+}
+.container{
+    width: 90%;
+}
+.box{
+ border: 1px solid red;
+}
+hr{
+    border: none;
+    height: 1px;
+    color: #0f0f0f;
+    background-color: #0f0f0f;
 }
