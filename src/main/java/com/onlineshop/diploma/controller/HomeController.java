@@ -74,7 +74,7 @@ public class HomeController {
 
         String password = SecurityUtility.randomPassword();
         String encryptedPassword = SecurityUtility.passwordEncoder().encode(password);
-        user.setPassword(encryptedPassword;);
+        user.setPassword(encryptedPassword);
 
         Role role = new Role();
         role.setName("ROLE_USER");
