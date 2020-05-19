@@ -10,9 +10,9 @@
             <h2 class="section-headline"><span>User Account</span></h2>
         </div>
         <div class="col-xs-4"></div>
-        <img src="https://playfab.com/assets/img/add-ons/steam/steam.png" alt="" class="image-responsive">
+        <img src="https://cs8.pikabu.ru/avatars/2576/x2576024-102292903.png" alt="logo" class="image-responsive" style="width:216px">
     </div>
-    <hr style="position: absolute; height: 6px;width: 100%;background: #333333; z-index: -1; margin-top: -80px">
+    <hr style="position: absolute; height: 6px;width: 100%;background: #333333; z-index: -1; margin-top: -16px">
     <img src="#" alt="" class="image-responsive">
     <div class="row" style="margin-top: 60px;">
         <div class="col-xs-9 col-xs-offset-3">
@@ -20,31 +20,31 @@
             <ul class="nav nav-tabs">
                 <li><a href="#tab-1" data-toggle="tab"><span style="color: #2b669a">Create new Account</span></a></li>
                 <li><a href="#tab-2" data-toggle="tab"><span style="color: #2b669a">Log in</span></a></li>
-                <li><a href="#tab-3" data-toggle="tab"><span style="color: #2b669a">Forget password</span></a></li>
+                <li><a href="#tab-3" data-toggle="tab"><span
+                        style="color: #2b669a">Forget password</span></a></li>
             </ul>
             <!--            Tab panels-->
             <div class="tab-content">
-
-<!--                create new user pane-->
-                <div class="tab-panel fade" id="tab-1">
+                <!--create new user pane-->
+                <div class="tab-pane fade" id="tab-1">
                     <div class="panel-group">
-                        <div class="panel panel-default" style="border: none;">
-                            <div class="panel-body" style="background-color: #ededed; margin-top: 20px;">
+                        <div class="panel panel-default" style="border: none">
+                            <div class="panel-body" style="background-color: #ededed;margin-top: 20px;">
                                 <form>
                                     <div class="form-group">
-                                        <label for="newUsername">* Username:</label>
-                                        <input type="text" required="required" class="form-control" id="newUsername"
+                                        <label for="newUsername">* Username</label>
+                                        <input required="required" type="text" class="form-control" id="newUsername"
                                                name="username"/>
-                                        <p style="color: #828282">Enter your username here</p>
+                                        <p style="color: #828282">Enter your Username here.</p>
                                     </div>
                                     <div class="form-group">
-                                        <label for="email">* Email address:</label>
-                                        <input type="text" required="required" class="form-control" id="email"
+                                        <label for="email">* Email Address</label>
+                                        <input required="required" type="text" class="form-control" id="email"
                                                name="email"/>
                                         <p style="color: #828282">A valid email address. All emails from the system
-                                            withll be sent to this address. The email address is not made public and
-                                            will only be used if you wish to recieve a new password or wish to recieve
-                                            certain notification.</p>
+                                            withal be sent to this address. The email address is not made public and
+                                            will only be used if you wish to receive a new password or wish to
+                                            receive</p>
                                     </div>
                                     <button class="btn btn-primary" type="submit">Create new account</button>
                                 </form>
@@ -52,16 +52,39 @@
                         </div>
                     </div>
                 </div>
-
-                <!--                log in-->
-                <div class="tab-panel fade" id="tab-2">
+            <!--log in-->
+                <div class="tab-pane fade" id="tab-2">
                     <div class="panel-group">
-                        <div class="panel panel-default" style="border: none;">
-                            <div class="panel-body" style="background-color: #ededed; margin-top: 20px;">
+                        <div class="panel panel-default" style="border: none">
+                            <div class="panel-body" style="background-color: #ededed;margin-top: 20px;">
                                 <form>
                                     <div class="form-group">
-                                        <label for="recoverEmail">* Your email:</label>
-                                        <input type="text" required="required" class="form-control" id="recoverEmail"
+                                        <label for="newUsername">* Username</label>
+                                        <input required="required" type="text" class="form-control" id="newUsername"
+                                               name="username"/>
+                                        <p style="color: #828282">Enter your Username here.</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">* Password</label>
+                                        <input required="required" type="password" class="form-control" id="password"
+                                               name="password"/>
+                                        <p style="color: #828282">Enter the password accompanies your username</p>
+                                    </div>
+                                    <button class="btn btn-primary" type="submit">Log in</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--forget password-->
+                <div class="tab-pane fade" id="tab-3">
+                    <div class="panel-group">
+                        <div class="panel panel-default" style="border: none">
+                            <div class="panel-body" style="background-color: #ededed;margin-top: 20px;">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="recoverEmail">* Your email</label>
+                                        <input required="required" type="text" class="form-control" id="recoverEmail"
                                                name="email"/>
                                         <p style="color: #828282">Enter your registered email address here.</p>
                                     </div>
@@ -71,35 +94,19 @@
                         </div>
                     </div>
                 </div>
-                <!--Forget password-->
-                <div class="tab-panel fade" id="tab-3">
-                    <div class="panel-group">
-                        <div class="panel panel-default" style="border: none;">
-                            <div class="panel-body" style="background-color: #ededed; margin-top: 20px;">
-                                <form>
-                                    <div class="form-group">
-                                        <label for="newUsername">* Username:</label>
-                                        <input type="text" required="required" class="form-control" id="newUsername"
-                                               name="username"/>
-                                        <p style="color: #828282">Enter your username here</p>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password">* Password:</label>
-                                        <input type="password" required="required" class="form-control" id="password"
-                                               name="password"/>
-                                        <p style="color: #828282">Enter the password that accompanies your username.</p>
-                                    </div>
-                                    <button class="btn btn-primary" type="submit">Log in</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
+    <!-- /.container -->
 </div>
-<!-- /.container -->
+</div>
 <div th-replace="common/header :: body-bottom-scripts"/>
+</div>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+        crossorigin="anonymous"></script>
+<script src="/js/bootstrap.min.js"></script>
+
 </body>
 </html>
