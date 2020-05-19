@@ -1,6 +1,7 @@
 package com.onlineshop.diploma.config;
 
-import org.hibernate.cfg.Environment;
+import com.onlineshop.diploma.service.impl.UserSecurityService;
+import com.onlineshop.diploma.utility.SecurityUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -15,11 +16,11 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
-    private Environment env;
+//    @Autowired
+//    private Environment env;
 
     @Autowired
-    private UserSecuritySetvice userSecurityService;
+    private UserSecurityService userSecurityService;
 
     private BCryptPasswordEncoder passwordEncoder() {
         return SecurityUtility.passwordEncoder();

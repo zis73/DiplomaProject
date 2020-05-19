@@ -1,4 +1,4 @@
-package com.onlineshop.diploma.impl;
+package com.onlineshop.diploma.service.impl;
 
 import com.onlineshop.diploma.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
