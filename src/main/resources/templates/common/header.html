@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:fragment="common-header">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -51,9 +51,9 @@
                     </form>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="./">My account<span class="sr-only">(current)</span></a></li>
-                    <li><a href="../navbar-static-top/">Saved Items</a></li>
-                    <li><a href="../navbar-fixed-top/">Your bag</a></li>
+                    <li class="active"><a sec:authorize="isAnonymous()" th:href="@{/login}">Enter to office<span class="sr-only">(current)</span></a></li>
+                    <li><a sec:authorize="isAuthenticated()" th:href="@{/myProfile}">My account</a></li>
+                    <li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">Log Out</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
