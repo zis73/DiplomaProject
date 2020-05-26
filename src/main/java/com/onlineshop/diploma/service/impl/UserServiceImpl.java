@@ -2,17 +2,23 @@ package com.onlineshop.diploma.service.impl;
 
 import com.onlineshop.diploma.domain.User;
 import com.onlineshop.diploma.domain.security.PasswordResetToken;
+import com.onlineshop.diploma.domain.security.UserRole;
 import com.onlineshop.diploma.repository.PasswordResetTokenRepository;
+import com.onlineshop.diploma.repository.RoleRepository;
 import com.onlineshop.diploma.repository.UserRepository;
 import com.onlineshop.diploma.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private RoleRepository roleRepository;
     @Autowired
     private PasswordResetTokenRepository passwordResetTokenRepository;
     @Override
@@ -31,7 +37,22 @@ public class UserServiceImpl implements UserService {
         return  userRepository.findByUsername(username);
     }
 
+    @Override
     public  User findByEmail (String email){
         return userRepository.findByEmail(email);
+    }
+    public User createUser(User user, Set<UserRole> userRoles) throws Exception{
+        User localUser = userRepository.findByUsername(user.getUsername());
+
+        if (localUser != null){
+            throw  new Exception("user already exists. Nothing be done");
+        }else {
+            for (UserRole ur : userRoles){
+                roleRepository.save(ur.getRole());
+            }
+            user.getUserRoles().addAll(userRoles);
+            localUser = userRepository.save(user);
+        }
+        return  localUser;
     }
 }

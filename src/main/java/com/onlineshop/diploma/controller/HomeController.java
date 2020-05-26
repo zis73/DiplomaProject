@@ -4,12 +4,16 @@ import com.onlineshop.diploma.domain.User;
 import com.onlineshop.diploma.domain.security.PasswordResetToken;
 import com.onlineshop.diploma.domain.security.Role;
 import com.onlineshop.diploma.domain.security.UserRole;
+import com.onlineshop.diploma.repository.RoleRepository;
 import com.onlineshop.diploma.service.UserService;
 import com.onlineshop.diploma.service.impl.UserSecurityService;
+import com.onlineshop.diploma.utility.MailConstructor;
 import com.onlineshop.diploma.utility.SecurityUtility;
 import freemarker.template.utility.SecurityUtilities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.cassandra.CassandraProperties;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,6 +29,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
+import java.util.UUID;
+
 
 @Controller
 public class HomeController {
@@ -32,12 +38,17 @@ public class HomeController {
     public String index() {
         return "index";
     }
-
+    @Autowired
+    private JavaMailSender mailSender;
+    @Autowired
+    private MailConstructor mailConstructor;
     @Autowired
     private UserService userService;
 
     @Autowired
     private UserSecurityService userSecurityService;
+    @Autowired
+    private RoleRepository roleRepository;
 
     @RequestMapping("/login")
     public String login(Model model) {
@@ -50,22 +61,23 @@ public class HomeController {
         model.addAttribute("classActiveForgetPassword", true);
         return "myAccount";
     }
-    @RequestMapping(value = "/newUser", method= RequestMethod.POST)
+
+    @RequestMapping(value = "/newUser", method = RequestMethod.POST)
     public String newUserPost(
             HttpServletRequest request,
             @ModelAttribute("email") String userEmail,
             @ModelAttribute("username") String username,
             Model model
-    ) throws Exception{
+    ) throws Exception {
         model.addAttribute("classActiveNewAccount", true);
         model.addAttribute("email", userEmail);
         model.addAttribute("username", username);
-        if (userService.findByUsername(username) != null){
-            model.addAllAttributes("usernameExists", true);
+        if (userService.findByUsername(username) != null) {
+            model.addAttribute("usernameExists", true);
             return "myAccount";
         }
-        if (userService.findByEmail(userEmail) != null){
-            model.addAllAttributes("email", true);
+        if (userService.findByEmail(userEmail) != null) {
+            model.addAttribute("email", true);
             return "myAccount";
         }
         User user = new User();
@@ -77,10 +89,19 @@ public class HomeController {
         user.setPassword(encryptedPassword);
 
         Role role = new Role();
+        role.setRoleId(1);
         role.setName("ROLE_USER");
         Set<UserRole> userRoles = new HashSet<>();
         userRoles.add(new UserRole(user, role));
         userService.createUser(user, userRoles);
+
+        String token = UUID.randomUUID().toString();
+        userService.createPasswordResetTokenForUser(user, token);
+        String appUrl = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+        SimpleMailMessage email = mailConstructor.constructResetTokenEmail(appUrl, request.getLocale(), token, user, password);
+        mailSender.send(email);
+        model.addAttribute("emailSent", "true");
+        return "myAccount";
     }
 
     @RequestMapping("/newUser")
