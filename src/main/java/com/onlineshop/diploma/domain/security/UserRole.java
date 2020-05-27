@@ -20,6 +20,10 @@ public class UserRole {
     @JoinColumn(name = "role_id")
     private Role role;
 
+    public UserRole(User user, Role role){
+        this.user = user;
+        this.role = role;
+    }
     public Long getUserRoleId() {
         return userRoleId;
     }
@@ -44,8 +48,4 @@ public class UserRole {
         this.role = role;
     }
 
-    public UserRole(User user, Role role){
-        this.user = user;
-        this.role = role;
-    }
 }

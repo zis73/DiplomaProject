@@ -17,6 +17,7 @@ import java.util.Set;
 public class DiplomaApplication implements CommandLineRunner {
     @Autowired
     private UserService userService;
+
     public static void main(String[] args) {
         SpringApplication.run(DiplomaApplication.class, args);
     }
@@ -32,7 +33,7 @@ public class DiplomaApplication implements CommandLineRunner {
         Set<UserRole> userRoles = new HashSet<>();
         Role role1 = new Role();
         role1.setRoleId(1);
-        role1.setName("ROLE_user");
+        role1.setName("ROLE_USER");
         userRoles.add(new UserRole(user1, role1));
 
         userService.createUser(user1, userRoles);
