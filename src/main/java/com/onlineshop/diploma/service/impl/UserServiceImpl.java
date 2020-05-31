@@ -7,6 +7,8 @@ import com.onlineshop.diploma.repository.PasswordResetTokenRepository;
 import com.onlineshop.diploma.repository.RoleRepository;
 import com.onlineshop.diploma.repository.UserRepository;
 import com.onlineshop.diploma.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,8 @@ import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
+
+    private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
     private UserRepository userRepository;
@@ -45,7 +49,7 @@ public class UserServiceImpl implements UserService {
         User localUser = userRepository.findByUsername(user.getUsername());
 
         if (localUser != null){
-            throw  new Exception("user already exists. Nothing be done");
+            LOG.info("user {} already exists. Nothing be done", user.getUsername());
         }else {
             for (UserRole ur : userRoles){
                 roleRepository.save(ur.getRole());
