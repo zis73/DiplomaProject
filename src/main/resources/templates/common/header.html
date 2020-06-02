@@ -51,7 +51,8 @@
                     </form>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a sec:authorize="isAnonymous()" th:href="@{/login}">Enter to office<span class="sr-only">(current)</span></a></li>
+                    <li class="active"><a href=#>Shopping card<span class="sr-only">(current)</span></a></li>
+                    <li><a sec:authorize="isAnonymous()" th:href="@{/login}">Log In</a></li>
                     <li><a sec:authorize="isAuthenticated()" th:href="@{/myProfile}">My account</a></li>
                     <li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">Log Out</a></li>
                 </ul>
@@ -60,9 +61,9 @@
     </nav>
 </div>
 <div th:fragment="body-bottom-scripts">
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
-            integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
-            crossorigin="anonymous"></script>
+<!--    <script src="https://code.jquery.com/jquery-1.12.4.min.js"-->
+<!--            integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"-->
+<!--            crossorigin="anonymous"></script>-->
     <script src="/js/bootstrap.min.js"></script>
 </div>
 </body>
