@@ -8,7 +8,7 @@
     <div class="row" style="margin-bottom: -100px;">
         <div class="col-xs-8">
             <h2 class="section-headline">
-                <h2 class="section-headline"><span th:text="?{#strings.toUpperCase(user.username)}"></span></h2>
+                <h2 class="section-headline"><span th:text="${#strings.toUpperCase(user.username)}"></span></h2>
             </h2>
         </div>
         <div class="col-xs-4"></div>
@@ -91,9 +91,9 @@
 </div>
 <div th-replace="common/header :: body-bottom-scripts"/>
 </div>
-<!--<script src="https://code.jquery.com/jquery-1.12.4.min.js"-->
-<!--        integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"-->
-<!--        crossorigin="anonymous"></script>-->
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+        crossorigin="anonymous"></script>
 <script src="/js/bootstrap.min.js"></script>
 
 </body>
