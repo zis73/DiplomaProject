@@ -64,7 +64,7 @@
         </div>
         <!-- /.col-xs-8 -->
         <div class="col-xs-4">
-            <img src="https://cs8.pikabu.ru/avatars/2576/x2576024-102292903.png" alt="logo" class="image-responsive">
+            <img src="/image/logo.png" alt="logo" class="image-responsive" style="height: 200px;">
         </div>
         <!-- /.col-xs-4 -->
     </div>
@@ -75,7 +75,7 @@
         <div class="col-xs-4">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <img src="https://im0-tub-ru.yandex.net/i?id=4303b9471f5c4bbf44e8d76575d3fdda&n=13"
+                    <img src="https://unvegetariano.com/images/best-seller-png-4.png"
                          class="img-responsive" alt="best of seller">
                 </div>
             </div>
@@ -197,10 +197,10 @@
 <!-- /.container -->
 <div th-replace="common/header :: body-bottom-scripts"/>
 <div th:fragment="body-bottom-scripts">
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+    <script th:src="@{https://code.jquery.com/jquery-1.12.4.min.js}"
             integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
             crossorigin="anonymous"></script>
-    <script src="/static/js/bootstrap.min.js"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
 </div>
 </body>
 </html>

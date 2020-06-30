@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header">
+<body>
+<!-- Static navbar -->
+<div th:replace="common/header :: navbar"/>
+<div class="container">
+    <div class="row" style="margin-bottom: -100px;">
+        <div class="col-xs-8">
+            <h2 class="section-headline">
+                <h2 class="section-headline"><span th:text="${user}? ${#strings.toUpperCase(user.username)} : 'ALL Games'"></span></h2>
+            </h2>
+        </div>
+        <div class="col-xs-4"></div>
+        <img src="/image/logo.png" alt="logo" class="image-responsive"
+             style="width:216px">
+    </div>
+    <hr style="position: absolute; height: 6px;width: 100%;background: #333333; z-index: -1; margin-top: -16px">
+    <img src="#" alt="" class="image-responsive">
+
+    <form th:action="@{/shoppingCart/addItem}" method="post">
+        <input hidden="hidden" th:field="*{game.id}">
+        <div class="row" style="margin-top: 120px">
+            <div class="col-xs-3">
+                <a th:href="@{/gameshelf}">Back to game list</a><br>
+                <img th:src="#{adminPath}+@{/image/book/}+@{/image/game/}+${game.id}+'.png'" alt="Photo game" class="img-responsive game-shelf">
+            </div>
+            <div class="col-xs-9">
+                <h3 th:text="${game.title}">Game Title</h3>
+                <div class="row">
+                    <div class="col-xs-5">
+                        <h5><strong>Author:</strong><span th:text="${game.author}"></span></h5>
+                        <p><strong>Publisher:</strong><span th:text="${game.publisher}"></span></p>
+                        <p><strong>Publication Date: </strong><span th:text="${game.publicationDate}"></span></p>
+                        <p><strong>Language:</strong><span th:text="${game.language}"></span></p>
+                        <p><strong>Category:</strong><span th:text="${game.category}"></span></p>
+                    </div>
+                    <div class="col-xs-7">
+                        <div class="panel panel-default" style="border-width: 5px; margin-top: 20px">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <h4>Price<span style="color: #db3208;">$<span th:text="${game.price}"></span></span></h4>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <h4 th:if="*{game.onStockNumber&gt;10}" style="color: green">In Stock</h4>
+                                        <h4 th:if="*{game.onStockNumber&lt;10 and game.inStockNumber&gt;0}" style="color: green">Only <span th:text="${game.inStockNumber}">In Stock</span></h4>
+                                        <h4 th:if="*{game.onStockNumber==0}" style="color: darkred">Unavailable</h4>
+                                        <button class="btn btn-warning" type="submit" style="color:black; border:1px solid black; padding:10px 40px 10px 40px;">Add to Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <p th:text="${game.description}"></p>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- /.container -->
+</div>
+<div th-replace="common/header :: body-bottom-scripts"/>
+</div>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+        crossorigin="anonymous"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+
+</body>
+</html>

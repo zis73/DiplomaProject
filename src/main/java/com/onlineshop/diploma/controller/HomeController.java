@@ -1,10 +1,12 @@
 package com.onlineshop.diploma.controller;
 
+import com.onlineshop.diploma.domain.Game;
 import com.onlineshop.diploma.domain.User;
 import com.onlineshop.diploma.domain.security.PasswordResetToken;
 import com.onlineshop.diploma.domain.security.Role;
 import com.onlineshop.diploma.domain.security.UserRole;
 import com.onlineshop.diploma.repository.RoleRepository;
+import com.onlineshop.diploma.service.GameService;
 import com.onlineshop.diploma.service.UserService;
 import com.onlineshop.diploma.service.impl.UserSecurityService;
 import com.onlineshop.diploma.utility.MailConstructor;
@@ -26,10 +28,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Set;
-import java.util.UUID;
+import javax.websocket.server.PathParam;
+import java.security.Principal;
+import java.util.*;
 
 
 @Controller
@@ -49,12 +50,37 @@ public class HomeController {
     @Autowired
     private UserSecurityService userSecurityService;
     @Autowired
+    private GameService gameService;
+    @Autowired
     private RoleRepository roleRepository;
 
     @RequestMapping("/login")
     public String login(Model model) {
         model.addAttribute("classActiveLogin", true);
         return "myAccount";
+    }
+
+    @RequestMapping("/gameshelf")
+    public String gameshelf(Model model) {
+        List<Game> gameList = gameService.findAll();
+        model.addAttribute("gameList", gameList);
+
+        return "gameshelf";
+    }
+
+    @RequestMapping("/gameDetail")
+    public String gameDetail(
+            @PathParam("id") Long id, Model model, Principal principal
+    ){
+        if(principal!= null){
+            String username = principal.getName();
+            User user = userService.findByUsername(username);
+            model.addAttribute("user", user);
+        }
+        Game game = gameService.findOne(id);
+
+        model.addAttribute("game", game);
+        return "gameDetail";
     }
 
     @RequestMapping("/forgetPassword")

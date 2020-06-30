@@ -10,10 +10,9 @@
             <h2 class="section-headline"><span>User Account</span></h2>
         </div>
         <div class="col-xs-4"></div>
-        <img src="https://cs8.pikabu.ru/avatars/2576/x2576024-102292903.png" alt="logo" class="image-responsive"
-             style="width:216px">
+        <img src="/image/logo.png" style="height: 200px;" alt="logo" class="image-responsive">
     </div>
-    <hr style="position: absolute; height: 6px;width: 100%;background: #333333; z-index: -1; margin-top: -16px">
+    <hr style="position: absolute; height: 6px;width: 60%;background: #333333; z-index: -1; margin-top: -6px">
     <img src="#" alt="" class="image-responsive">
     <div class="row" style="margin-top: 60px;">
         <div class="col-xs-9 col-xs-offset-3">
@@ -114,10 +113,10 @@
 </div>
 <div th-replace="common/header :: body-bottom-scripts"></div>
 </div>
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+<script th:src="@{https://code.jquery.com/jquery-1.12.4.min.js}"
         integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
         crossorigin="anonymous"></script>
-<script src="/static/js/bootstrap.min.js"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
 
 </body>
 </html>

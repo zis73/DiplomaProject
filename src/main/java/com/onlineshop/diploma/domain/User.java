@@ -57,6 +57,7 @@ public class User implements UserDetails {
         userRoles.forEach(ur -> authorities.add(new Authority(ur.getRole().getName())));
         return authorities;
     }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
@@ -75,7 +76,6 @@ public class User implements UserDetails {
     public void setUsername(String username) {
         this.username = username;
     }
-
 
 
     public String getPassword() {

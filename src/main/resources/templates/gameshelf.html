@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header">
+<body>
+<!-- Static navbar -->
+<div th:replace="common/header :: navbar"/>
+<div class="container">
+    <div class="row" style="margin-bottom: -100px;">
+        <div class="col-xs-8">
+            <h2 class="section-headline">
+                <h2 class="section-headline"><span th:text="${user}? ${#strings.toUpperCase(user.username)} : 'ALL Games'"></span></h2>
+            </h2>
+        </div>
+        <div class="col-xs-4"></div>
+        <img src="/image/logo.png" alt="logo" class="image-responsive"
+             style="width:216px">
+    </div>
+    <hr style="position: absolute; height: 6px;width: 100%;background: #333333; z-index: -1; margin-top: -16px">
+    <img src="#" alt="" class="image-responsive">
+    <div class="row" style="margin-top: 60px;">
+        <div class="col-xs-9 col-xs-offset-3">
+            <div th:if="${emptyList}">
+                <h5>Ooops, no result. Try something else.</h5>
+            </div>
+            <table border="0" id="gameList">
+                <thead><tr><th></th></tr></thead>
+                <tbody>
+                <tr class="game-item" data-th-each="game : ${gameList}">
+                    <td>
+                        <div th:if="${game != null}">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <a th:href="@{/gameDetail?id=}+${game.id}"></a><img class="img-responsive shelf-game" th:src="#{adminPath}+@{image/games/}+${game.id}+'.png'" alt="logo">
+                                </div>
+                                <div class="col-xs-9">
+                                    <a th:href="@{/gameDetail?id=}+${game.id}"><h4 th:text="${game.title}"></h4></a>
+                                        <span th:text="${game.publicationDate}"></span>
+                                        <p th:text="${game.author}"></p>
+                                    <span style="font-size: x-large;color: #db3208;">$<span th:text="${#numbers.formatDecimal(game.price,0, 'COMMA', 2, 'POINT')}"></span></span>
+                                    <p th:text="${#strings.abbreviate(game.description,500)}"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- /.container -->
+</div>
+</div>
+<div th-replace="common/header :: body-bottom-scripts"/>
+</div>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+        crossorigin="anonymous"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+
+</body>
+</html>

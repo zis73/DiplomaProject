@@ -11,7 +11,9 @@ import java.util.stream.Stream;
 
 public interface PasswordResetTokenRepository extends JpaRepository<PasswordResetToken, Long> {
     PasswordResetToken findByToken(String token);
+
     PasswordResetToken findByUser(User user);
+
     Stream<PasswordResetToken> findAllByExpiryDateLessThan(Date now);
 
     @Modifying
