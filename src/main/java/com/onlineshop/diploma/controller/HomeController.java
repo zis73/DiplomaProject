@@ -77,7 +77,7 @@ public class HomeController {
             User user = userService.findByUsername(username);
             model.addAttribute("user", user);
         }
-        Game game = gameService.findOne(id);
+        Game game = gameService.findById(id);
 
         model.addAttribute("game", game);
         return "gameDetail";

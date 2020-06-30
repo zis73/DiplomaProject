@@ -18,8 +18,8 @@ public class GameServiceImpl implements GameService {
         return (List<Game>) gameRepository.findAll();
     }
 
-    public Game findOne(Long id) {
-        return gameRepository.findOne(id);
+    public Game findById(Long id) {
+        return gameRepository.findById(id).orElse(null);
     }
 
 }
