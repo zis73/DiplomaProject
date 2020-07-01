@@ -46,7 +46,7 @@
                     </form>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href=#>Shopping card<span class="sr-only">(current)</span></a></li>
+                    <li><a href=#>Shopping card</a></li>
                     <li><a sec:authorize="isAnonymous()" th:href="@{/login}">Log In</a></li>
                     <li><a sec:authorize="isAuthenticated()" th:href="@{/myProfile}">My account</a></li>
                     <li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">Log Out</a></li>
